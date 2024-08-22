@@ -7,7 +7,7 @@ module "ec2_us_east_1" {
 
   instance_type = "t2.micro"
   ami_id        = "ami-05134c8ef96964280"
-# key_name      = "your-key-name"
+ # key_name      = "your-key-name"
   tags          = {
     Name = "EC2-US-East-1"
   }
@@ -22,7 +22,7 @@ module "ec2_us_west_2" {
 
   instance_type = "t2.micro"
   ami_id        = "ami-05134c8ef96964280"
- # key_name      = "your-key-name"
+#  key_name      = "your-key-name"
   tags          = {
     Name = "EC2-US-West-2"
   }
@@ -37,7 +37,7 @@ module "ec2_eu_west_1" {
 
   instance_type = "t2.micro"
   ami_id        = "ami-05134c8ef96964280"
-#  key_name      = "your-key-name"
+ # key_name      = "your-key-name"
   tags          = {
     Name = "EC2-EU-West-1"
   }
@@ -66,8 +66,8 @@ module "ec2_ap_southeast_2" {
   }
 
   instance_type = "t2.micro"
-#  ami_id        = "ami-05134c8ef96964280"
-  key_name      = "your-key-name"
+  ami_id        = "ami-05134c8ef96964280"
+ # key_name      = "your-key-name"
   tags          = {
     Name = "EC2-AP-Southeast-2"
   }
