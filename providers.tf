@@ -1,8 +1,7 @@
 terraform {
   required_providers {
     aws = {
-      source  = "hashicorp/aws"
-      version = "~> 4.0"  # Match the version with the module's required version
+      source = "hashicorp/aws"
     }
   }
 }
