@@ -1,24 +1,104 @@
-data "aws_ami" "app_ami" {
-  most_recent = true
+module "ec2_us_east_1" {
+  source = "./modules/ec2_instance"
 
-  filter {
-    name   = "name"
-    values = ["bitnami-tomcat-*-x86_64-hvm-ebs-nami"]
+  providers = {
+    aws = aws.us-east-1
   }
 
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
+  instance_type = "t2.micro"
+  ami_id        = "ami-05134c8ef96964280"
+# key_name      = "your-key-name"
+  tags          = {
+    Name = "EC2-US-East-1"
   }
-
-  owners = ["979382823631"] # Bitnami
 }
 
-resource "aws_instance" "noc" {
-  ami           = data.aws_ami.app_ami.id
-  instance_type = var.instance_type
+module "ec2_us_west_2" {
+  source = "./modules/ec2_instance"
 
-  tags = {
-    Name = "Noc system"
+  providers = {
+    aws = aws.us-west-2
+  }
+
+  instance_type = "t2.micro"
+  ami_id        = "ami-05134c8ef96964280"
+ # key_name      = "your-key-name"
+  tags          = {
+    Name = "EC2-US-West-2"
+  }
+}
+
+module "ec2_eu_west_1" {
+  source = "./modules/ec2_instance"
+
+  providers = {
+    aws = aws.eu-west-1
+  }
+
+  instance_type = "t2.micro"
+  ami_id        = "ami-05134c8ef96964280"
+#  key_name      = "your-key-name"
+  tags          = {
+    Name = "EC2-EU-West-1"
+  }
+}
+
+module "ec2_ap_southeast_1" {
+  source = "./modules/ec2_instance"
+
+  providers = {
+    aws = aws.ap-southeast-1
+  }
+
+  instance_type = "t2.micro"
+  ami_id        = "ami-05134c8ef96964280"
+#  key_name      = "your-key-name"
+  tags          = {
+    Name = "EC2-AP-Southeast-1"
+  }
+}
+
+module "ec2_ap_southeast_2" {
+  source = "./modules/ec2_instance"
+
+  providers = {
+    aws = aws.ap-southeast-2
+  }
+
+  instance_type = "t2.micro"
+#  ami_id        = "ami-05134c8ef96964280"
+  key_name      = "your-key-name"
+  tags          = {
+    Name = "EC2-AP-Southeast-2"
+  }
+}
+
+module "ec2_ap_northeast_1" {
+  source = "./modules/ec2_instance"
+
+  providers = {
+    aws = aws.ap-northeast-1
+  }
+
+  instance_type = "t2.micro"
+  ami_id        = "ami-05134c8ef96964280"
+#  key_name      = "your-key-name"
+  tags          = {
+    Name = "EC2-AP-Northeast-1"
+  }
+}
+
+module "ec2_sa_east_1" {
+  source = "./modules/ec2_instance"
+
+  providers = {
+    aws = aws.sa-east-1
+  }
+
+  instance_type = "t2.micro"
+  ami_id        = "ami-05134c8ef96964280"
+#  key_name      = "your-key-name"
+  tags          = {
+    Name = "EC2-SA-East-1"
   }
 }
