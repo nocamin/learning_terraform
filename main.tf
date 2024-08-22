@@ -6,7 +6,7 @@ module "ec2_us_east_1" {
   }
 
   instance_type = "t2.micro"
-  ami_id        = "ami-05134c8ef96964280"
+  ami_id        = "ami-0e86e20dae9224db8"
   tags          = {
     Name = "EC2-US-East-1"
   }
@@ -20,7 +20,7 @@ module "ec2_us_west_2" {
   }
 
   instance_type = "t2.micro"
-  ami_id        = "ami-05134c8ef96964280"
+  ami_id        = "ami-085f9c64a9b75eed5"
   tags          = {
     Name = "EC2-US-West-2"
   }
@@ -34,7 +34,7 @@ module "ec2_eu_west_1" {
   }
 
   instance_type = "t2.micro"
-  ami_id        = "ami-05134c8ef96964280"
+  ami_id        = "ami-03cc8375791cb8bcf"
   tags          = {
     Name = "EC2-EU-West-1"
   }
@@ -48,7 +48,7 @@ module "ec2_ap_southeast_1" {
   }
 
   instance_type = "t2.micro"
-  ami_id        = "ami-05134c8ef96964280"
+  ami_id        = "ami-01811d4912b4ccb26"
   tags          = {
     Name = "EC2-AP-Southeast-1"
   }
@@ -62,7 +62,7 @@ module "ec2_ap_southeast_2" {
   }
 
   instance_type = "t2.micro"
-  ami_id        = "ami-05134c8ef96964280"
+  ami_id        = "ami-0892a9c01908fafd1"
   tags          = {
     Name = "EC2-AP-Southeast-2"
   }
@@ -76,7 +76,7 @@ module "ec2_ap_northeast_1" {
   }
 
   instance_type = "t2.micro"
-  ami_id        = "ami-05134c8ef96964280"
+  ami_id        = "ami-0cab37bd176bb80d3"
   tags          = {
     Name = "EC2-AP-Northeast-1"
   }
@@ -90,7 +90,7 @@ module "ec2_sa_east_1" {
   }
 
   instance_type = "t2.micro"
-  ami_id        = "ami-05134c8ef96964280"
+  ami_id        = "ami-01a38093d387a7497"
 # key_name      = "your-key-name"
   tags          = {
     Name = "EC2-SA-East-1"
