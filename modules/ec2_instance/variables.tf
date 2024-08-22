@@ -9,11 +9,6 @@ variable "ami_id" {
   type        = string
 }
 
-#variable "key_name" {
-#  description = "SSH key name"
-#  type        = string
-#}
-
 variable "tags" {
   description = "Tags to apply to the instance"
   type        = map(string)
