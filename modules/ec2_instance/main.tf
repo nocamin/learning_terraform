@@ -13,5 +13,4 @@ resource "aws_instance" "noc" {
 #  key_name      = var.key_name
 
   tags = var.tags
-  provider = aws
 }
