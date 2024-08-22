@@ -2,7 +2,7 @@ module "ec2_us_east_1" {
   source = "./modules/ec2_instance"
 
   providers = {
-    aws = aws.us-east-1
+    aws = aws.us-1
   }
 
   instance_type = "t2.micro"
@@ -16,7 +16,7 @@ module "ec2_us_west_2" {
   source = "./modules/ec2_instance"
 
   providers = {
-    aws = aws.us-west-2
+    aws = aws.us-2
   }
 
   instance_type = "t2.micro"
@@ -30,7 +30,7 @@ module "ec2_eu_west_1" {
   source = "./modules/ec2_instance"
 
   providers = {
-    aws = aws.eu-west-1
+    aws = aws.eu-1
   }
 
   instance_type = "t2.micro"
@@ -44,7 +44,7 @@ module "ec2_ap_southeast_1" {
   source = "./modules/ec2_instance"
 
   providers = {
-    aws = aws.ap-southeast-1
+    aws = aws.ap-se-1
   }
 
   instance_type = "t2.micro"
@@ -58,7 +58,7 @@ module "ec2_ap_southeast_2" {
   source = "./modules/ec2_instance"
 
   providers = {
-    aws = aws.ap-southeast-2
+    aws = aws.ap-se-2
   }
 
   instance_type = "t2.micro"
@@ -72,7 +72,7 @@ module "ec2_ap_northeast_1" {
   source = "./modules/ec2_instance"
 
   providers = {
-    aws = aws.ap-northeast-1
+    aws = aws.ap-ne-1
   }
 
   instance_type = "t2.micro"
@@ -86,7 +86,7 @@ module "ec2_sa_east_1" {
   source = "./modules/ec2_instance"
 
   providers = {
-    aws = aws.sa-east-1
+    aws = aws.se-1
   }
 
   instance_type = "t2.micro"
