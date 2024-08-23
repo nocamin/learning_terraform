@@ -92,7 +92,7 @@ module "ec2_sa_east_1" {
   source = "./modules/ec2_instance"
 
   providers = {
-    aws = aws.se-1
+    aws = aws.sae-1
   }
 
   instance_type = "t2.micro"
