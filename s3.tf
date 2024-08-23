@@ -1,6 +1,6 @@
 # Create S3 bucket to store Ansible playbooks
 module "noc_services_s3_bucket" {
-  source  = "registry.terraform.io/modules/terraform-aws-modules/s3-bucket/aws"
+  source  = "terraform-aws-modules/s3-bucket/aws"
   version = "4.1.1"
 
   bucket = "${var.aws_account_id}-noc-services"
