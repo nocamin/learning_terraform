@@ -14,3 +14,13 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "region" {
+  description = "specify region to instance"
+  type = string
+}
+
+variable "s3_bucket" {
+  description = "S3 bucket variable"
+  type = string
+}
