@@ -1,6 +1,3 @@
-provider "aws" {
-  alias = var.region
-}
 resource "aws_instance" "noc" {
   ami           = var.ami_id
   instance_type = var.instance_type

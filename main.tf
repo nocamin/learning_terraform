@@ -1,3 +1,6 @@
+provider "aws" {
+  alias = var.region
+}
 module "ec2_instances" {
   source = "./modules/ec2_instance"
 
