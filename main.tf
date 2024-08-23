@@ -9,7 +9,6 @@ module "ec2_instances" {
   s3_bucket     = module.noc_services_s3_bucket.id
 
   providers = {
-    aws = aws.each.value
+    aws = aws[each.key]
   }
 }
-
