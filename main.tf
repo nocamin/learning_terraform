@@ -9,9 +9,3 @@ module "ec2_instance" {
   providers      = { aws = aws.${each.key} }
 }
 
-module "s3_bucket" {
-  source = "./s3.tf"
-  region = var.default_region
-  bucket_name = var.s3_bucket_name
-  providers = { aws = aws.default }
-}
