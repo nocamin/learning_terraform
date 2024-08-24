@@ -1,3 +1,6 @@
+provider "aws" {
+  region = "us-east-1"
+}
 module "ec2_us_east_1" {
   source        = "./modules/ec2"
   region        = "us-east-1"
