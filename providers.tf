@@ -1,29 +1,34 @@
 provider "aws" {
-  region = var.default_region
   alias  = "default"
+  region = var.default_region
 }
 
 provider "aws" {
-  region = "us-west-2"
   alias  = "us-west-2"
+  region = "us-west-2"
 }
 
 provider "aws" {
-  region = "eu-west-1"
   alias  = "eu-west-1"
+  region = "eu-west-1"
 }
 
 provider "aws" {
-  region = "ap-southeast-1"
   alias  = "ap-southeast-1"
+  region = "ap-southeast-1"
 }
 
 provider "aws" {
-  region = "ap-southeast-2"
   alias  = "ap-southeast-2"
+  region = "ap-southeast-2"
 }
 
 provider "aws" {
-  region = "ap-northeast-1"
   alias  = "ap-northeast-1"
+  region = "ap-northeast-1"
+}
+
+provider "aws" {
+  alias  = "sa-east-1"
+  region = "sa-east-1"
 }
