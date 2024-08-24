@@ -6,5 +6,7 @@ module "ec2_instance" {
   ami_id         = each.value
   instance_type  = var.instance_type
   user_data      = templatefile("${path.module}/templates/user_data.sh", {})
-  providers      = { aws = aws.${each.key} }
+  providers = {
+    aws = aws[lookup(var.providers_list, index(keys(var.region_ami_map), each.key))]
+  }
 }

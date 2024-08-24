@@ -19,6 +19,12 @@ variable "ami_map" {
   }
 }
 
+variable "providers_list" {
+  type = list(string)
+  default = ["us-east-1", "us-west-2", "eu-west-1", "ap-southeast-1", "ap-southeast-2", "ap-northeast-1", "sa-east-1"]
+  # Define aliases as needed...
+}
+
 variable "instance_type" {
   description = "EC2 instance type"
   type        = string
