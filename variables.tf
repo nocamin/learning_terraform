@@ -50,7 +50,7 @@ variable "s3_bucket_name" {
   default     = "my-ansible-bucket"
 }
 
-variable "user_data" {
-  description = "User data script"
-  type        = string
-}
+#variable "user_data" {
+#  description = "User data script"
+#  type        = string
+#}
