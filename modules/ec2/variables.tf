@@ -13,7 +13,7 @@ variable "instance_type" {
   type        = string
 }
 
-#variable "user_data" {
-#  description = "User data script"
-#  type        = string
-#}
+variable "user_data" {
+  description = "User data script"
+  type        = string
+}
