@@ -10,7 +10,7 @@ module "ec2_us_east_1" {
     default_region = var.default_region
   })
   providers = {
-    aws = aws.default
+    aws = aws.us-east-1
   }
 }
 
