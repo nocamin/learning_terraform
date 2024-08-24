@@ -1,17 +1,17 @@
-provider "aws" {
-  alias = var.region
-}
 module "ec2_instances" {
-  source = "./modules/ec2_instance"
+  source = "./modules/ec2"
 
-  for_each = toset(var.regions)
+  for_each       = var.region_ami_map
+  region         = each.key
+  ami_id         = each.value
+  instance_type  = var.instance_type
+  user_data      = templatefile("${path.module}/templates/user_data.sh", {})
+  providers      = { aws = aws.${each.key} }
+}
 
-  region        = each.value
-  ami           = var.ami_map[each.value]
-  instance_type = var.instance_type
-  s3_bucket     = module.noc_services_s3_bucket.id
-
-  providers = {
-    aws = aws[each.key]
-  }
+module "s3_bucket" {
+  source = "./s3.tf"
+  region = var.default_region
+  bucket_name = var.s3_bucket_name
+  providers = { aws = aws.default }
 }

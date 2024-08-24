@@ -1,23 +1,14 @@
-# Create S3 bucket to store Ansible playbooks
-module "noc_services_s3_bucket" {
-  source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "4.1.1"
+resource "aws_s3_bucket" "ansible_bucket" {
+  bucket = var.s3_bucket_name
 
-  bucket = "${var.aws_account_id}-noc-services"
+  tags = {
+    Name = "Ansible Roles Bucket"
+  }
 }
 
-# Zip the Ansible playbook directory
-data "archive_file" "ansible_playbook" {
-  type        = "zip"
-  source_dir  = "${path.module}/ansible/playbook"
-  output_path = "${path.module}/ansible/playbook.zip"
+resource "aws_s3_bucket_object" "ansible_zip" {
+  bucket = aws_s3_bucket.ansible_bucket.bucket
+  key    = "ansible/roles.zip"
+  source = "${path.module}/ansible/roles.zip"
 }
 
-# Upload the zipped playbook to the S3 bucket
-resource "aws_s3_object" "ansible_playbook" {
-  bucket = module.noc_services_s3_bucket.id
-  key    = "playbook.zip"
-  source = data.archive_file.ansible_playbook.output_path
-
-  etag = data.archive_file.ansible_playbook.output_md5
-}
