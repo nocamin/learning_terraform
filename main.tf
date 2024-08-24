@@ -1,4 +1,4 @@
-module "ec2_instances" {
+module "ec2_instance" {
   source = "./modules/ec2"
 
   for_each       = var.region_ami_map
