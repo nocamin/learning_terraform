@@ -1,3 +1,9 @@
+locals {
+  provider_map = {
+    for region, alias in var.region_provider_map : region => aws[alias]
+  }
+}
+
 module "ec2_instances" {
   source        = "./modules/ec2"
   for_each      = var.region_ami_map
@@ -7,6 +13,6 @@ module "ec2_instances" {
   user_data     = templatefile("${path.module}/templates/user_data.sh", {})
 
   providers = {
-    aws = aws[lookup(var.region_provider_map, each.key, "default")]
+    aws = local.provider_map[each.key]
   }
 }
