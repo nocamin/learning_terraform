@@ -1,18 +1,26 @@
-locals {
-  provider_map = {
-    for region, alias in var.region_provider_map : region => aws[alias]
-  }
-}
-
-module "ec2_instances" {
+module "ec2_us_east_1" {
   source        = "./modules/ec2"
-  for_each      = var.region_ami_map
-  region        = each.key
-  ami_id        = each.value
+  region        = "us-east-1"
+  ami_id        = var.region_ami_map["us-east-1"]
   instance_type = var.instance_type
   user_data     = templatefile("${path.module}/templates/user_data.sh", {})
 
   providers = {
-    aws = local.provider_map[each.key]
+    aws = aws.default
   }
 }
+
+module "ec2_us_west_2" {
+  source        = "./modules/ec2"
+  region        = "us-west-2"
+  ami_id        = var.region_ami_map["us-west-2"]
+  instance_type = var.instance_type
+  user_data     = templatefile("${path.module}/templates/user_data.sh", {})
+
+  providers = {
+    aws = aws.us-west-2
+  }
+}
+
+# Repeat for other regions...
+
