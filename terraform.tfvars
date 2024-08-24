@@ -1,2 +1,2 @@
-s3_bucket_name = "my-ansible-bucket"
+s3_bucket_name = "noc-services-ansible-bucket"
 default_region = "us-east-1"
