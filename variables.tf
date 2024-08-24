@@ -1,14 +1,8 @@
-variable "default_region" {
-  description = "Default region where S3 bucket will be created"
-  type        =  string
-  default     = "us-east-1"
-}
-
 variable "ami_map" {
   description = "Mapping of region to AMI ID"
   type = map(string)
   default = {
-    "default"        = "ami-0e86e20dae9224db8"
+    "us-east-1"      = "ami-0e86e20dae9224db8"
     "us-west-2"      = "ami-05134c8ef96964280"
     "eu-west-1"      = "ami-03cc8375791cb8bcf"
     "ap-southeast-1" = "ami-01811d4912b4ccb26"
@@ -49,4 +43,3 @@ variable "s3_bucket_name" {
   type        =  string
   default     = "my-ansible-bucket"
 }
-

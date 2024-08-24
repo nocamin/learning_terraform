@@ -1,6 +1,6 @@
 provider "aws" {
-  alias  = "default"
-  region = var.default_region
+  alias  = "us-east-1"
+  region = "us-east-1"
 }
 
 provider "aws" {
