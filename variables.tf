@@ -19,6 +19,20 @@ variable "ami_map" {
   }
 }
 
+variable "region_provider_map" {
+  type = map(string)
+  default = {
+    "us-east-1"      = "aws.us_east_1"
+    "us-west-2"      = "aws.us_west_2"
+    "eu-west-1"      = "aws.eu_west_1"
+    "ap-southeast-1" = "aws.ap_southeast_1"
+    "ap-southeast-2" = "aws.ap_southeast_2"
+    "ap-northeast-1" = "aws.ap_northeast_1"
+    "sa-east-1"      = "aws.sa_east_1"
+  }
+}
+
+
 #variable "providers_list" {
 #  type = list(string)
 #  default = ["us-east-1", "us-west-2", "eu-west-1", "ap-southeast-1", "ap-southeast-2", "ap-northeast-1", "sa-east-1"]
