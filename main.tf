@@ -8,4 +8,3 @@ module "ec2_instance" {
   user_data      = templatefile("${path.module}/templates/user_data.sh", {})
   providers      = { aws = aws.${each.key} }
 }
-

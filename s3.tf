@@ -1,6 +1,6 @@
 module "s3_bucket" {
   source = "terraform-aws-modules/s3-bucket/aws"
-  version = "3.0.0"
+  version = "4.0.0"
   region = var.default_region
   bucket_name = var.s3_bucket_name
   providers = { aws = aws.default }
