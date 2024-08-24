@@ -2,8 +2,8 @@
 sudo apt-get update
 sudo apt-get install -y ansible awscli unzip
 
-S3_BUCKET="${var.s3_bucket_name}"
-S3_REGION="${var.default_region}"
+S3_BUCKET= "${s3_bucket_name}"
+S3_REGION= "${default_region}"
 
 # Download the zipped Ansible roles from S3
 aws s3 cp s3://$S3_BUCKET/playbook.zip /home/ubuntu/playbook.zip --region $S3_REGION
