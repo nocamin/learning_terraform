@@ -15,7 +15,7 @@ data "archive_file" "ansible_playbook" {
 
 # Upload the zipped playbook to the S3 bucket
 resource "aws_s3_object" "ansible_playbook" {
-  bucket = module.noc_services_s3_bucket.id
+  bucket = module.noc_services_s3_bucket.bucket
   key    = "playbook.zip"
   source = data.archive_file.ansible_playbook.output_path
 
