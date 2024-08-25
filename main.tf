@@ -17,13 +17,11 @@ locals {
   s3_bucket_name = var.s3_bucket_name
 }
 
-# Create EC2 instances across all regions
-module "ec2_instances" {
-  for_each = local.regions
-
+# Define EC2 module for us-east-1 region
+module "ec2_us_east_1" {
   source        = "./modules/ec2"
-  region        = each.key
-  ami_id        = each.value.ami_id
+  region        = "us-east-1"
+  ami_id        = local.regions["us-east-1"].ami_id
   instance_type = local.instance_type
   s3_bucket_name = local.s3_bucket_name
 
@@ -33,6 +31,24 @@ module "ec2_instances" {
   })
 
   providers = {
-    aws = aws.each.value.provider_alias   # Reference provider alias directly
+    aws = aws.us-east-1
+  }
+}
+
+# Define EC2 module for us-west-2 region
+module "ec2_us_west_2" {
+  source        = "./modules/ec2"
+  region        = "us-west-2"
+  ami_id        = local.regions["us-west-2"].ami_id
+  instance_type = local.instance_type
+  s3_bucket_name = local.s3_bucket_name
+
+  user_data = templatefile("${path.module}/templates/user_data.sh", {
+    s3_bucket_name  = local.s3_bucket_name,
+    default_region = var.default_region
+  })
+
+  providers = {
+    aws = aws.us-west-2
   }
 }
