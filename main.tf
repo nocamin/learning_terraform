@@ -31,8 +31,8 @@ module "ec2_instances" {
     s3_bucket_name  = local.s3_bucket_name,
     default_region = var.default_region  # Reference default_region directly
   })
-
+ 
   providers = {
-    aws = aws.each.value.provider_alias  # Reference provider alias correctly
+    aws = aws.${each.value.provider_alias}  # Use the alias as expected
   }
 }
