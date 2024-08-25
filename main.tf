@@ -4,12 +4,12 @@
 locals {
   regions = {
     "us-east-1" = {
-      provider = aws.us-east-1
-      ami_id   = data.aws_ami.us_east_1.id
+      provider_alias = "aws.us-east-1"
+      ami_id         = data.aws_ami.us_east_1.id
     }
     "us-west-2" = {
-      provider = aws.us-west-2
-      ami_id   = data.aws_ami.us_west_2.id
+      provider_alias = "aws.us-west-2"
+      ami_id         = data.aws_ami.us_west_2.id
     }
   }
 
@@ -28,11 +28,11 @@ module "ec2_instances" {
   s3_bucket_name = local.s3_bucket_name
 
   user_data = templatefile("${path.module}/templates/user_data.sh", {
-    s3_bucket_name = local.s3_bucket_name,
+    s3_bucket_name  = local.s3_bucket_name,
     default_region = var.default_region  # Reference default_region directly
   })
 
   providers = {
-    aws = each.value.provider
+    aws = aws.each.value.provider_alias  # Reference provider alias correctly
   }
 }
