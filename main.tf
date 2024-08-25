@@ -33,6 +33,6 @@ module "ec2_instances" {
   })
 
   providers = {
-    aws = aws.${each.value.provider_alias}  # Reference provider alias directly
+    aws = aws.each.value.provider_alias   # Reference provider alias directly
   }
 }
