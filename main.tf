@@ -24,6 +24,7 @@ module "ec2_us_east_1" {
   ami_id        = local.regions["us-east-1"].ami_id
   instance_type = local.instance_type
   s3_bucket_name = local.s3_bucket_name
+  default_region = var.default_region
 
   user_data = templatefile("${path.module}/templates/user_data.sh", {
     s3_bucket_name  = local.s3_bucket_name,
