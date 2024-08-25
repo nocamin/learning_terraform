@@ -13,11 +13,8 @@ locals {
     }
   }
 
-  common_vars = {
-    instance_type  = var.instance_type
-    s3_bucket_name = var.s3_bucket_name
-    default_region = var.default_region
-  }
+  instance_type  = var.instance_type
+  s3_bucket_name = var.s3_bucket_name
 }
 
 # Loop over each region to create EC2 instances
@@ -27,13 +24,12 @@ module "ec2_instances" {
   source        = "./modules/ec2"
   region        = each.key
   ami_id        = each.value.ami_id
-  instance_type = local.common_vars.instance_type
-  s3_bucket_name = local.common_vars.s3_bucket_name
-  default_region = local.common_vars.default_region
+  instance_type = local.instance_type
+  s3_bucket_name = local.s3_bucket_name
 
   user_data = templatefile("${path.module}/templates/user_data.sh", {
-    s3_bucket_name = local.common_vars.s3_bucket_name,
-    default_region = local.common_vars.default_region
+    s3_bucket_name = local.s3_bucket_name,
+    default_region = var.default_region  # Reference default_region directly
   })
 
   providers = {
