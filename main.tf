@@ -4,11 +4,11 @@
 locals {
   regions = {
     "us-east-1" = {
-      provider_alias = "aws.us-east-1"
+      provider_alias = "us-east-1"
       ami_id         = data.aws_ami.us_east_1.id
     }
     "us-west-2" = {
-      provider_alias = "aws.us-west-2"
+      provider_alias = "us-west-2"
       ami_id         = data.aws_ami.us_west_2.id
     }
   }
@@ -17,7 +17,7 @@ locals {
   s3_bucket_name = var.s3_bucket_name
 }
 
-# Loop over each region to create EC2 instances
+# Create EC2 instances across all regions
 module "ec2_instances" {
   for_each = local.regions
 
@@ -29,10 +29,10 @@ module "ec2_instances" {
 
   user_data = templatefile("${path.module}/templates/user_data.sh", {
     s3_bucket_name  = local.s3_bucket_name,
-    default_region = var.default_region  # Reference default_region directly
+    default_region = var.default_region
   })
- 
+
   providers = {
-    aws = aws.${each.value.provider_alias}  # Use the alias as expected
+    aws = aws.${each.value.provider_alias}  # Reference provider alias directly
   }
 }

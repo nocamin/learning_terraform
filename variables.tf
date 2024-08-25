@@ -1,21 +1,21 @@
 # variables.tf
 
 variable "instance_type" {
-  description = "The type of instance to use"
+  description = "Type of the EC2 instance"
   type        = string
 }
 
 variable "s3_bucket_name" {
-  description = "The name of the S3 bucket"
+  description = "Name of the S3 bucket to store Ansible playbooks"
   type        = string
 }
 
 variable "default_region" {
-  description = "The default region for AWS resources"
+  description = "Default AWS region"
   type        = string
 }
 
 variable "ami_map" {
-  description = "Mapping of region to AMI ID"
+  description = "Map of AMI IDs for different regions"
   type        = map(string)
 }
