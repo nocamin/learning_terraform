@@ -1,20 +1,17 @@
+# modules/ec2/variables.tf
+
 variable "region" {
-  description = "Region for the EC2 instance"
+  description = "The AWS region"
   type        = string
 }
 
 variable "ami_id" {
-  description = "AMI ID for the EC2 instance"
+  description = "AMI ID to use for the EC2 instance"
   type        = string
 }
 
 variable "instance_type" {
-  description = "Instance type"
-  type        = string
-}
-
-variable "user_data" {
-  description = "User data script"
+  description = "The instance type for EC2"
   type        = string
 }
 
@@ -24,6 +21,11 @@ variable "s3_bucket_name" {
 }
 
 variable "default_region" {
-  description = "The default AWS region"
+  description = "The default region"
+  type        = string
+}
+
+variable "user_data" {
+  description = "The user data script"
   type        = string
 }

@@ -1,7 +1,4 @@
-provider "aws" {
-  alias  = "default"
-  region = var.default_region
-}
+# providers.tf
 
 provider "aws" {
   alias  = "us-east-1"
@@ -13,28 +10,28 @@ provider "aws" {
   region = "us-west-2"
 }
 
+# Fetch the latest Amazon Linux 2 AMI for us-east-1
+data "aws_ami" "us_east_1" {
+  most_recent = true
+  owners      = ["amazon"]
 
-#provider "aws" {
-#  alias  = "eu-west-1"
-#  region = "eu-west-1"
-#}
-#
-#provider "aws" {
-#  alias  = "ap-southeast-1"
-#  region = "ap-southeast-1"
-#}
-#
-#provider "aws" {
-#  alias  = "ap-southeast-2"
-#  region = "ap-southeast-2"
-#}
-#
-#provider "aws" {
-#  alias  = "ap-northeast-1"
-#  region = "ap-northeast-1"
-#}
-#
-#provider "aws" {
-#  alias  = "sa-east-1"
-#  region = "sa-east-1"
-#}
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-hvm-*-x86_64-gp2"]
+  }
+
+  provider = aws.us-east-1
+}
+
+# Fetch the latest Amazon Linux 2 AMI for us-west-2
+data "aws_ami" "us_west_2" {
+  most_recent = true
+  owners      = ["amazon"]
+
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-hvm-*-x86_64-gp2"]
+  }
+
+  provider = aws.us-west-2
+}

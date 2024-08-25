@@ -1,3 +1,5 @@
+# s3.tf
+
 # Create S3 bucket to store Ansible playbooks
 module "noc_services_s3_bucket" {
   source  = "terraform-aws-modules/s3-bucket/aws"
@@ -15,7 +17,7 @@ data "archive_file" "ansible_playbook" {
 
 # Upload the zipped playbook to the S3 bucket
 resource "aws_s3_object" "ansible_playbook" {
-  bucket = var.s3_bucket_name     # Reference the bucket from the module
+  bucket = module.noc_services_s3_bucket.bucket  # Reference the bucket from the module output
   key    = "playbook.zip"
   source = data.archive_file.ansible_playbook.output_path
 
@@ -23,4 +25,3 @@ resource "aws_s3_object" "ansible_playbook" {
 
   depends_on = [module.noc_services_s3_bucket]
 }
-

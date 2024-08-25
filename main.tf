@@ -1,37 +1,42 @@
-provider "aws" {
-  region = "us-east-1"
-}
-module "ec2_us_east_1" {
-  source        = "./modules/ec2"
-  region        = "us-east-1"
-  ami_id        = var.ami_map["us-east-1"]
-  instance_type = var.instance_type
- s3_bucket_name = var.s3_bucket_name
- default_region = var.default_region
-  user_data = templatefile("${path.module}/templates/user_data.sh", {
-    s3_bucket_name = var.s3_bucket_name,
+# main.tf
+
+# Local variable to define the regions and their corresponding AMIs
+locals {
+  regions = {
+    "us-east-1" = {
+      provider = aws.us-east-1
+      ami_id   = data.aws_ami.us_east_1.id
+    }
+    "us-west-2" = {
+      provider = aws.us-west-2
+      ami_id   = data.aws_ami.us_west_2.id
+    }
+  }
+
+  common_vars = {
+    instance_type  = var.instance_type
+    s3_bucket_name = var.s3_bucket_name
     default_region = var.default_region
-  })
-  providers = {
-    aws = aws.us-east-1
   }
 }
 
-module "ec2_us_west_2" {
+# Loop over each region to create EC2 instances
+module "ec2_instances" {
+  for_each = local.regions
+
   source        = "./modules/ec2"
-  region        = "us-west-2"
-  ami_id        = var.ami_map["us-west-2"]
-  instance_type = var.instance_type
- s3_bucket_name = var.s3_bucket_name
- default_region = var.default_region
+  region        = each.key
+  ami_id        = each.value.ami_id
+  instance_type = local.common_vars.instance_type
+  s3_bucket_name = local.common_vars.s3_bucket_name
+  default_region = local.common_vars.default_region
+
   user_data = templatefile("${path.module}/templates/user_data.sh", {
-    s3_bucket_name = var.s3_bucket_name,
-    default_region = var.default_region
+    s3_bucket_name = local.common_vars.s3_bucket_name,
+    default_region = local.common_vars.default_region
   })
+
   providers = {
-    aws = aws.us-west-2
+    aws = each.value.provider
   }
 }
-
-# Repeat for other regions...
-
