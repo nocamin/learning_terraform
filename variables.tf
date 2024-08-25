@@ -23,5 +23,6 @@ variable "ami_map" {
   type        = map(string)
   default = {
     "us-east-1"      = "ami-0e86e20dae9224db8"
+    "us-west-2"      = "ami-05134c8ef96964280"
   }
 }
