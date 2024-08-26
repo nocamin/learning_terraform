@@ -30,16 +30,21 @@ terraform {
 
 
 # providers.tf
-locals {
-  provider_configs = { for idx, region in var.regions : idx => region }
+# Define provider configurations with unique aliases for each region
+provider "aws" {
+  alias  = "regional_0"
+  region = var.regions[0]
 }
 
 provider "aws" {
-  for_each = local.provider_configs
-  alias    = "regional_${each.key}"
-  region   = each.value
+  alias  = "regional_1"
+  region = var.regions[1]
 }
 
+provider "aws" {
+  alias  = "regional_2"
+  region = var.regions[2]
+}
 
 # main.tf
 resource "aws_instance" "example" {
