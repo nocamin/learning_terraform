@@ -1,5 +1,4 @@
 # providers.tf
-
 terraform {
   required_providers {
     aws = {
@@ -15,7 +14,7 @@ variable "regions" {
 }
 
 provider "aws" {
-  alias  = "var.regions[count.index]"
+  alias  = var.regions[count.index]
   region = var.regions[count.index]
 }
 
@@ -27,5 +26,4 @@ resource "aws_instance" "example" {
     aws = aws.var.regions[count.index]
   }
 }
-  # Other arguments
 
