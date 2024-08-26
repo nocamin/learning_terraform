@@ -27,7 +27,5 @@ resource "aws_instance" "example" {
     aws = aws.var.regions[count.index]
   }
 }
-
   # Other arguments
-}
 
