@@ -18,7 +18,8 @@ resource "aws_s3_object" "ansible_playbook" {
   key    = "playbook.zip"
   source = data.archive_file.ansible_playbook.output_path
 
-  etag = data.archive_file.ansible_playbook.output_md5
+  #etag = data.archive_file.ansible_playbook.output_md5
+  
   depends_on = [module.noc_services_s3_bucket]
 }
 

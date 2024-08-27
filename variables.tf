@@ -9,7 +9,7 @@ variable "instance_type" {
 variable "s3_bucket_name" {
   description = "Name of the S3 bucket to store Ansible playbooks"
   type        = string
-  default     = "noc-bucket"
+  default     = "noc-bucket-playbook"
 }
 
 variable "default_region" {
