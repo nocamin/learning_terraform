@@ -1,0 +1,14 @@
+- name: Update apt package cache
+  apt:
+    update_cache: yes
+
+- name: Install Apache
+  apt:
+    name: "{{ web_svc }}"
+    state: present
+
+- name: Start Apache service
+  service:
+    name: "{{ web_svc }}"
+    state: started
+    enabled: true

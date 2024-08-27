@@ -9,20 +9,16 @@ terraform {
   }
 }
 
-
-# providers.tf
-# Define provider configurations with unique aliases for each region
 provider "aws" {
-  alias  = "regional_0"
-  region = var.regions[0]
+  alias  = "us-east-1"
+  region = "us-east-1"
 }
 
 provider "aws" {
-  alias  = "regional_1"
-  region = var.regions[1]
+  alias  = "us-west-2"
+  region = "us-west-2"
 }
 
 provider "aws" {
-  alias  = "regional_2"
-  region = var.regions[2]
+  region = var.default_region
 }
