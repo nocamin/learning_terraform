@@ -1,12 +1,12 @@
 # data-sources.tf
 
 data "aws_ami_ids" "amazon_linux_2023" {
- # most_recent = true
+  most_recent = true
   owners      = ["amazon"]
 
   filter {
     name   = "name"
-    values = ["amzn-ami-al2023-*-hvm-*-x86_64-gp2"]
+    values = ["amzn-ami-al2023-*-hvm-*-x86_64-*"]
   }
 
   filter {
