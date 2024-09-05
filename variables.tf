@@ -26,3 +26,9 @@ variable "ami_map" {
     "us-west-2"      = "ami-0bfddf4206f1fa7b9"
   }
 }
+
+variable "regions" {
+  description = "List of AWS regions to find the Amazon Linux 2023 AMI"
+  type        = list(string)
+  default     = ["us-west-2", "us-east-1", "eu-west-1", "eu-central-1", "ap-south-1", "ap-northeast-1", "ap-southeast-2"]
+}
