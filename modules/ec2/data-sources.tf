@@ -1,7 +1,9 @@
 # data-sources.tf
 
+data "aws_availability_zones" "available" {}
+
 data "aws_ami_ids" "amazon_linux_2023" {
-#  most_recent = true
+  most_recent = true
   owners      = ["amazon"]
 
   filter {
