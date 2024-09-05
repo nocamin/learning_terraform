@@ -18,11 +18,11 @@ variable "default_region" {
   default     = "us-east-1"
 }
 
-variable "ami_map" {
-  description = "Map of AMI IDs for different regions"
-  type        = map(string)
-  default = {
-    "us-east-1"      = "ami-0e86e20dae9224db8"
-    "us-west-2"      = "ami-05134c8ef96964280"
-  }
-}
+#variable "ami_map" {
+#  description = "Map of AMI IDs for different regions"
+#  type        = map(string)
+#  default = {
+#    "us-east-1"      = "ami-0e86e20dae9224db8"
+#    "us-west-2"      = "ami-05134c8ef96964280"
+#  }
+#}
