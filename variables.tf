@@ -9,7 +9,7 @@ variable "instance_type" {
 variable "s3_bucket_name" {
   description = "Name of the S3 bucket to store Ansible playbooks"
   type        = string
-  default     = "noc-services-ansible-bucket-for-testing"
+  default     = "nocping-bucket"
 }
 
 variable "default_region" {
@@ -22,7 +22,7 @@ variable "ami_map" {
   description = "Map of AMI IDs for different regions"
   type        = map(string)
   default = {
-    "us-east-1"      = "ami-0e86e20dae9224db8"
-    "us-west-2"      = "ami-05134c8ef96964280"
+    "us-east-1"      = "ami-0182f373e66f89c85"
+    "us-west-2"      = "ami-0bfddf4206f1fa7b9"
   }
 }
