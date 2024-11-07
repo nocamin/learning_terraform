@@ -23,4 +23,6 @@
           register: aws_regions_info
 
  
-
+    - name: setup role
+          include_role:
+            name: apache

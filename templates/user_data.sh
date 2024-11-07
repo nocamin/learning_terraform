@@ -1,43 +1,23 @@
 #!/bin/bash
+sudo apt-get update
+sudo apt-get install -y ansible awscli unzip
 
-SSM_AGENT_RPM=https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
-INSTANCE_ID=$(curl -s http://169.254.169.254/latest/meta-data/instance-id)
+S3_BUCKET= ${s3_bucket_name}
+S3_REGION= ${default_region}
 
-# install ansible
-if [ ! -e /usr/bin/python3 ]; then
-    yum -y install python3
-    yum -y install python3-pip unzip
-    pip3 install -U pip
-    python3 -m pip install boto3 botocore ansible requests
-    ansible-galaxy collection install ansible.posix
-    mkdir -p /etc/ansible
-    mkdir -p /var/log/ansible
-fi
+# Download the zipped Ansible roles from S3
+aws s3 cp s3://$S3_BUCKET/playbook.zip /home/ubuntu/playbook.zip --region $S3_REGION
 
-# Configure Ansible
-cat <<EOF > /etc/ansible/ansible.cfg
-[defaults]
-log_path = /var/log/ansible/localhost.log
-interpreter_python = /usr/bin/python3
-collections_paths = /root/.ansible/collections/ansible_collections
-EOF
+# Unzip the roles
+unzip /home/ubuntu/playbook.zip -d /home/ubuntu/
 
-# Configure logrotate
-cat <<EOF > /etc/logrotate.d/ansible-localhost
-/var/log/ansible/localhost.log {
-  copytruncate
-  daily
-  missingok
-  rotate 7
-  compress
-  delaycompress
-  notifempty
-  create 644 root root
-}
-EOF
+# Ensure Ansible config file exists
+echo "[defaults]" > /etc/ansible/ansible.cfg
+echo "roles_path = /home/ubuntu/roles" >> /etc/ansible/ansible.cfg
 
-# Install and start ssm agent
-yum install -y $SSM_AGENT_RPM
+# Create an Ansible inventory file with the current instance
+echo "[ec2_instances]" > /etc/ansible/hosts
+echo "$(curl -s http://169.254.169.254/latest/meta-data/local-ipv4) ansible_connection=local" >> /etc/ansible/hosts
 
-# Start SSM Agent
-systemctl start amazon-ssm-agent
+# Run the playbook
+ansible-playbook /home/ubuntu/playbook/playbook.yml
