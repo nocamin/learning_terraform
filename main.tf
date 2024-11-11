@@ -19,8 +19,8 @@ module "ec2_us_west_2" {
   region        = "us-west-2"
   ami_id        = var.ami_map["us-west-2"]
   instance_type = var.instance_type
-  s3_bucket_name = var.s3_bucket_name
-  default_region = var.default_region
+ s3_bucket_name = var.s3_bucket_name
+ default_region = var.default_region
   user_data = templatefile("${path.module}/templates/user_data.sh", {
     s3_bucket_name = var.s3_bucket_name,
     default_region = var.default_region
